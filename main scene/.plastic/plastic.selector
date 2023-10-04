@@ -1,0 +1,4 @@
+repository "main scene@wechat_os_qy057q9ixywsz6lyii3_9ilhk@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"

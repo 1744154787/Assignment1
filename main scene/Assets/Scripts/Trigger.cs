@@ -1,25 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class TriggerScript : MonoBehaviour
+public class Trigger : MonoBehaviour
 {
-    // 目标对象的引用，可以在编辑器中拖拽赋值
-    public GameObject target;
+    // 目标场景的索引
+    public int targetSceneIndex;
+
+    // 射线方向和长度
     public Vector3 rayDirection = Vector3.up;
     public float rayLength = 5f;
 
+    // 在每一帧更新时，从当前位置沿着射线方向发射一条射线
     private void Update()
     {
-        // 从当前位置沿着射线方向发射一条射线
         RaycastHit hit;
         if (Physics.Raycast(transform.position, rayDirection, out hit, rayLength))
         {
-            // 如果射线碰到了玩家
+            // 如果射线碰到了角色，调用游戏管理器的方法加载目标场景
             if (hit.collider.CompareTag("Player"))
             {
-                // 向目标对象发送一个名为 Teleport 的消息
-                target.SendMessage("Teleport");
+                ChangjingManager.Instance.LoadScene(targetSceneIndex);
             }
         }
     }

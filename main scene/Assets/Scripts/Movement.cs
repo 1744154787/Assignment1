@@ -46,7 +46,7 @@ public class MouseClickMove : MonoBehaviour
         distanceCounter += PlayerAgent.velocity.magnitude * Time.deltaTime; // 累加移动的距离
         if (distanceCounter >= footstepDistance) // 如果距离达到间隔
         {
-            PlayFootstepSound(); // 播放脚步声
+            AudioManager.Instance.RandomSFX(AudioManager.Instance.footstepSounds);
             distanceCounter = 0f; // 重置距离计数器
         }
 

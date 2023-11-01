@@ -22,6 +22,7 @@ public class Trigger : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 ChangjingManager.Instance.LoadScene(targetSceneIndex);
+                
             }
         }
     }

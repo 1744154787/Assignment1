@@ -26,6 +26,7 @@ public class ChangjingManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public static bool SceneChangeHappened = false;
 
     // 根据索引加载对应的场景
     public void LoadScene(int index)
@@ -33,10 +34,14 @@ public class ChangjingManager : MonoBehaviour
         if (index >= 0 && index < scenes.Length)
         {
             SceneManager.LoadScene(scenes[index]);
+            SceneChangeHappened = true;
         }
         else
         {
             Debug.LogError("Invalid scene index!");
         }
     }
+
+
+ 
 }

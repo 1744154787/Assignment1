@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class HeadInfoController : MonoBehaviour
 {
+    private NavMeshAgent playerAgent;
     // 角色切换场景的次数
     private int sceneChangeCount = 0;
 
@@ -16,6 +18,8 @@ public class HeadInfoController : MonoBehaviour
     {
         numberText = GetComponentInChildren<Text>();
         numberText.text = "0";
+        playerAgent = GameObject.Find("player").GetComponent<NavMeshAgent>();
+
     }
 
     // 在Update方法中让Canvas始终朝向摄像机，并检测是否有场景切换的事件发生
@@ -36,5 +40,14 @@ public class HeadInfoController : MonoBehaviour
             // 重置事件标志
             ChangjingManager.SceneChangeHappened = false;
         }
+        if (playerAgent.velocity.magnitude > 0f) // 如果角色的速度大于0，说明角色在移动
+        {
+            numberText.text = "移动"; // 更新文本组件的内容为“移动”
+        }
+        else // 否则，说明角色在待机
+        {
+            numberText.text = "待机"; // 更新文本组件的内容为“待机”
+        }
+
     }
 }
